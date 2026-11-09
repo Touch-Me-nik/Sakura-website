@@ -130,13 +130,19 @@ if (menuPreview && menuRows.length > 0) {
 }
 
 const sections = document.querySelectorAll(".hero, .menu-section, .events-section, .news-section");
-const tops = [];
 
+const tops = [];
 sections.forEach(function (s) {
     tops.push(s.offsetTop);
 });
 
 window.addEventListener("scroll", function () {
+    const screenWidth = window.innerWidth;
+    
+    if (screenWidth <= 1000) {
+        return;
+    }
+    
     const scroll = window.scrollY;
 
     sections.forEach(function (section, i) {
@@ -144,7 +150,7 @@ window.addEventListener("scroll", function () {
 
         let transform, opacity;
         if (progress > 0) {
-            const translateY = -progress *0.6;
+            const translateY = -progress * 0.6;
             const scale = 1 - progress * 0.0002;
             opacity = Math.max(0, 1 - progress * 0.0008);
             transform = "translateY(" + translateY + "px) scale(" + scale + ")";

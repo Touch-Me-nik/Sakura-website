@@ -8,7 +8,11 @@
         <link rel="stylesheet" href="style.css?v=3">
     </head>
     <body>
-        <?php /** @var array $preloader */  ?>
+        <?php 
+        if (!isset($preloader)) {
+            $preloader = ['С', 'А', 'К', 'У', 'Р', 'А'];
+        }
+        ?>
 
         <div class="preloader">
             <h1>
@@ -30,11 +34,11 @@
                     <li><a href="#">МЕРОПРИЯТИЯ</a></li>
                     <li><a href="#news">НОВОСТИ</a></li>
                     <li><a href="#about">О НАС</a></li>
-                    <li><a href="#">КОНТАКТЫ</a></li>
+                    <li><a href="contacts.php">КОНТАКТЫ</a></li>
                 </ul>
                 <div class="nav-images">
                     <img src="pictures/bar.png" alt="бар">
-                    <img src="pictures/nav.sushi.png" alt="ночная подача">
+                    <img src="pictures/menu/nav.sushi.png" alt="ночная подача">
                     <img src="pictures/sacura.png" alt="Задний двор ресторана">
                     <img src="pictures/ugol.png" alt="Третий зал">
                     <img src="pictures/zal.png" alt="Первый зал">

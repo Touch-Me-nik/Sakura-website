@@ -1,3 +1,4 @@
+/** подкл через ларагорн http://localhost/sakura-website/index.php# */
 <?php include "header.php"; ?>
 <?php include "data.php"; ?>
 
@@ -34,8 +35,15 @@
         <div class="events-section" id="events">
             <h2>Мероприятия</h2>
             <div class="events-grid">
-            <?php foreach ($events as $event): ?>
+                <?php 
+                $MainEvents = array_slice($events, 0, 3);
+
+                foreach ($MainEvents as $event):    
+                ?>
                 <div class="events-card">
+                    <div class="events-img-wrapper">
+                    <img src="<?= $event["img"] ?>" alt="<?= $event["alt"] ?>">
+                </div>
                     <h3><?= $event["title"] ?></h3>
                     <p><?= $event["desc"] ?></p>
                     <span class="events-date"><?= $event["date"] ?></span>
@@ -43,6 +51,11 @@
                 </div>
             <?php endforeach; ?>
             </div>
+                <div style="text-align: center; margin-top: 40px;">
+        <a href="events.php" class="events-btn" style="text-decoration: none; display: inline-block;">
+            Все мероприятия →
+        </a>
+    </div>
         </div>
 
     <div class="news-section" id="news">
