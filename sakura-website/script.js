@@ -103,7 +103,7 @@ const preloader = document.querySelector(".preloader");
 if (preloader) {
     setTimeout(function () {
         preloader.style.transform = "translateY(-100%)";
-    }, 3000); // 3 секунды
+    }, 3000);
     
     const span = document.querySelectorAll(".preloader h1 span");
     for (let i = 0; i < span.length; i++) {
@@ -164,5 +164,33 @@ window.addEventListener("scroll", function () {
             el.style.transform = transform;
             el.style.opacity = opacity;
         }
+    });
+});
+
+$(document).ready(function(){
+    $('#bookingForm').on('submit', function(event){
+        event.preventDefault();
+        console.log("AJAX сработал! Отправляем данные...");
+        let formData = $(this).serialize();
+
+        $.ajax({
+            url: '',
+            type: 'POST',
+            data: formData,
+            dataType: 'json',
+
+            success: function(response){
+                if(response.status === 'success'){
+                    alert('✅ Успешно: ' + response.message);
+                    $('#bookingForm')[0].reset();
+                } else {
+                    alert('❌ Ошибка: ' + response.message);
+                }
+            },
+            error: function(xhr, status, error){
+                alert('⚠️ Произошла ошибка сети. Проверьте консоль (F12).');
+                console.error('AJAX Error details:', status, error, xhr.responseText);
+            }
+        });
     });
 });
